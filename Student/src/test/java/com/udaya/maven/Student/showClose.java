@@ -1,35 +1,24 @@
 package com.udaya.maven.Student;
 
+
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class showClose {
-
-static WebDriver driver;
-
-public showClose(WebDriver driver){
-    this.driver=driver;
-}
-
-public static void main(String[] args) {
-
-    showClose sc = new showClose(driver);
-    sc.IE("http://www.msn.com");
-    driver.quit();
-
-}
-
-//Internet Explorer driver
-public void IE(String URL){
-    //Set the driver property for IE
-	System.setProperty("webdriver.ie.driver","D:/IEDriverServer.exe");
-
-    DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();  
-    ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-
-    //Create object of Internet explorer driver
-    driver = new InternetExplorerDriver(ieCapabilities);
-    driver.get(URL);
-}
+	WebDriver driver = new FirefoxDriver();
+	
+	@Test 
+	
+	public void test() throws InterruptedException { 
+	driver.manage().window().maximize(); 
+	driver.get("http://only-testing-blog.blogspot.in/2013/11/new-test.html"); 
+	driver.findElement(By.xpath("//input[@name='fname']")).sendKeys("junittest1 executed"); 
+	Thread.sleep(2000); 
+	System.out.print("junittest1 class is executed"); 
+	driver.quit(); 
+	} 
 }
